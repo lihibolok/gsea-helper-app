@@ -225,7 +225,7 @@ gsea-helper-app/
 │  ├─ __init__.py
 │  └─ test_gsea_core.py    # Basic test for ranked list preparation
 └─ README.md               # This document
-~~~
+```
 
 ---
 
@@ -235,29 +235,29 @@ These instructions describe the expected usage once the project is implemented.
 
 1. **Clone the repository**
 
-   ~~~bash
+   ```bash
    git clone https://github.com/lihibolok/gsea-helper-app.git
    cd gsea-helper-app
-   ~~~
+   ```
 
 2. **Create and activate a virtual environment (optional but recommended)**
 
-   ~~~bash
+   ```bash
    python -m venv .venv
    source .venv/bin/activate  # On Windows: .venv\Scripts\activate
-   ~~~
+   ```
 
 3. **Install dependencies**
 
-   ~~~bash
+   ```bash
    pip install -r requirements.txt
-   ~~~
+   ```
 
 4. **Start the app**
 
-   ~~~bash
+   ```bash
    streamlit run app.py
-   ~~~
+   ```
 
 Then open the local URL that Streamlit prints in your browser.  
 From there you can upload your DE results file, configure the analysis, and view/download the GSEA results and plots.
