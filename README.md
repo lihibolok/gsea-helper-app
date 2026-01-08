@@ -1,4 +1,4 @@
-# GSEA Helper App – Project Proposal
+# GSEA Helper App 
 
 ## Overview
 
