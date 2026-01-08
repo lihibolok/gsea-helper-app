@@ -187,7 +187,7 @@ If `min_size` is too high, `gseapy` may return the error:
 > Hint 2: Check gene symbols are identifiable to your gmt input.  
 > Hint 3: Gene symbols curated in Enrichr web services are all upcases.
 
-For the real bulk RNA-seq example (`examples/RNAsc_de_results.csv`, mouse heart Tv1 KO vs DKO), you can use more typical parameters, such as:
+For the real bulk RNA-seq example (`examples/RNAseq_de_results.csv`, mouse heart Tv1 KO vs DKO), you can use more typical parameters, such as:
 - **Organism:** `Mus musculus`
 - **Minimum gene set size:** `10–15`
 - **Maximum gene set size:** `500–1000`
