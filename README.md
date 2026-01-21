@@ -1,8 +1,8 @@
-# GSEA Helper App 
+# GSEA Helper App 🧬📊
 
 ## Overview
 
-This project aims to develop a Python-based web application that simplifies running **Gene Set Enrichment Analysis (GSEA)** on differential expression (DE) results (e.g., from bulk RNA-seq or proteomics).  
+This project is a Python-based web application that simplifies running **Gene Set Enrichment Analysis (GSEA)** on differential expression (DE) results (e.g., from bulk RNA-seq or proteomics).  
 The tool provides an easy-to-use interface where the user uploads a results table, selects basic parameters, and receives a ranked list of enriched pathways together with publication-ready visualizations.
 
 The goal is to turn the manual process of formatting input files, calling GSEA functions, and plotting the results into a single, streamlined workflow that can be reused in future research projects.
@@ -66,12 +66,12 @@ The app accepts a **differential expression (DE) results table**, typically expo
 
 - File type: `.csv` or `.tsv`
 - Required columns (names are chosen by the user inside the app):
-  - A **gene identifier column** (e.g. gene symbol such as *Gnai3* or *CD24a*).  
+  - A **gene identifier column** (e.g. gene symbol such as *GNAI3* or *CD24A*).  
     The app expects gene symbols for the gene set libraries used (MSigDB/Enrichr-style), and it automatically converts them to uppercase.
   - A **score column** used for ranking, e.g. `log2FoldChange` or a test statistic (e.g. `stat`).
 - Optional columns (used for display or external filtering):
   - `pvalue`, `padj` (adjusted p-value / FDR)
-  - any other metadata the user wants to keep
+  - any other metadata the user wants to keep.
 
 The user selects which column should be treated as the gene identifier and which as the ranking score. The app then constructs the ranked gene list internally.
 
@@ -83,10 +83,10 @@ In the Streamlit interface, the user can:
 - Select:
   - The **gene column**.
   - The **score column** used to rank genes.
-  - The **organism** (initially: *Homo sapiens* and *Mus musculus*).
+  - The **organism** (currently: *Homo sapiens* and *Mus musculus*).
   - The **gene set collection**, e.g.:
     - Hallmark gene sets (MSigDB Hallmark collection)
-    - KEGG pathways
+    - KEGG pathways.
 
 Gene sets are provided via predefined gene set library names supported by `gseapy` (Enrichr/MSigDB collections).  
 The app internally constructs a ranked gene list and passes it to the GSEA (pre-rank) function.
@@ -100,7 +100,7 @@ The core analysis is implemented in Python using `gseapy`:
   - NES (Normalized Enrichment Score)
   - FDR / adjusted p-value
   - Gene set size
-  - Leading‐edge or contributing genes
+  - Leading‐edge or contributing genes.
 - Add derived columns:
   - `direction` = *upregulated* if NES > 0, *downregulated* if NES < 0.
   - `gene_ratio` = (number of leading-edge genes) / (gene set size).
@@ -120,14 +120,14 @@ The app presents the results in two main ways:
 
 2. **Plots**
    - A **barplot** summarizing enriched terms, e.g.:
-     - x-axis: NES
-     - y-axis: pathway names
+     - x-axis: NES  
+     - y-axis: pathway names  
      - color: direction (up/down).
    - A **dotplot**, for example:
-     - x-axis: NES
-     - y-axis: pathway names
-     - point size: number of genes (`num_genes`)
-     - color: FDR (`fdr`)
+     - x-axis: NES  
+     - y-axis: pathway names  
+     - point size: number of genes (`num_genes`)  
+     - color: FDR (`fdr`).
    - Plots are generated with `matplotlib` / `seaborn`, shown directly in the app, and can be downloaded as PNG images.
 
 ---
@@ -187,7 +187,7 @@ If `min_size` is too high, `gseapy` may return the error:
 > Hint 2: Check gene symbols are identifiable to your gmt input.  
 > Hint 3: Gene symbols curated in Enrichr web services are all upcases.
 
-For the real bulk RNA-seq example (`examples/RNAseq_de_results.csv`, mouse heart Tv1 KO vs DKO), you can use more typical parameters, such as:
+For the real bulk RNA-seq example (`examples/RNAsc_de_results.csv`, mouse heart Tv1 KO vs DKO), you can use more typical parameters, such as:
 - **Organism:** `Mus musculus`
 - **Minimum gene set size:** `10–15`
 - **Maximum gene set size:** `500–1000`
@@ -197,8 +197,8 @@ For the real bulk RNA-seq example (`examples/RNAseq_de_results.csv`, mouse heart
 
 ## Technical Details
 
-- **Language:** Python (3.10+)
-- **Main libraries (planned and used):**
+- **Language:** Python (tested with Python 3.14, should work with Python 3.10+)
+- **Main libraries:**
   - `pandas` (data loading and manipulation)
   - `numpy` (numerical operations)
   - `gseapy` (running GSEA and accessing gene sets)
@@ -210,28 +210,28 @@ A `requirements.txt` file lists all dependencies.
 
 ---
 
-## Repository Structure (Planned / Implemented)
+## Repository Structure
 
 ```text
 gsea-helper-app/
-├─ app.py                 # Streamlit entry point (UI)
-├─ gsea_core.py           # Core GSEA logic: preparing ranked list, running analysis
-├─ plotting.py            # Plot creation functions (barplot, dotplot)
+├─ app.py                      # Streamlit entry point (UI)
+├─ gsea_core.py                # Core GSEA logic: preparing ranked list, running analysis
+├─ plotting.py                 # Plot creation functions (barplot, dotplot)
 ├─ requirements.txt
 ├─ examples/
-│  ├─ example_de_results.csv           # Toy DE table
-│  └─ [real bulk RNA-seq DE table]     # Mouse heart Tv1 KO vs DKO
+│  ├─ example_de_results.csv   # Toy DE table
+│  └─ RNAsc_de_results.csv     # Mouse heart Tv1 KO vs DKO
 ├─ tests/
 │  ├─ __init__.py
-│  └─ test_gsea_core.py    # Basic test for ranked list preparation
-└─ README.md               # This document
+│  └─ test_gsea_core.py        # Basic test for ranked list preparation
+└─ README.md                   # This document
 ```
 
 ---
 
-## How to Install and Run (Planned)
+## How to Install and Run
 
-These instructions describe the expected usage once the project is implemented.
+These instructions describe how to set up and run the app locally.
 
 1. **Clone the repository**
 
@@ -253,19 +253,21 @@ These instructions describe the expected usage once the project is implemented.
    pip install -r requirements.txt
    ```
 
-4. **Start the app**
+4. **Run tests (optional, to verify the core logic)**
+
+   ```bash
+   pytest
+   ```
+
+5. **Start the app**
 
    ```bash
    streamlit run app.py
    ```
 
-Then open the local URL that Streamlit prints in your browser.  
+Then open the local URL that Streamlit prints in your browser (usually `http://localhost:8501`).  
 From there you can upload your DE results file, configure the analysis, and view/download the GSEA results and plots.
 
 ---
 
-## Notes
-
-- The exact features and interface may evolve while implementing the project, but the core idea will remain:  
-  a simple, reusable tool to run GSEA on differential expression results with minimal manual work.
--   After completion, this README will be updated with final usage instructions.
+**This project was created as part of the Python Programming Course under the final project assignment.**
